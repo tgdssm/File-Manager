@@ -25,6 +25,10 @@ class FileManagerController:
         if not self.__check_directory(file):
             os.mkdir(f"{self.__path}/{self.__extension}")
 
+    def __verify_dir(self, file: str):
+        if self.__check_directory(file):
+            os.rmdir(f"{self.__path}/{self.__extension}")
+
     def __move_file_to_directory(self, file: str):
         self.__extension = file.split('.')[-1]
         file_path = f"{self.__path}/{file}"
@@ -46,3 +50,7 @@ class FileManagerController:
             shutil.move(file_path, f'{self.__path}/pdf')
         elif self.__extension == 'doc':
             shutil.move(file_path, f'{self.__path}/doc')
+        elif self.__extension == 'txt':
+            shutil.move(file_path, f'{self.__path}/txt')
+        elif self.__extension == 'zip':
+            shutil.move(file_path, f'{self.__path}/WinRAR ZIP archive')
